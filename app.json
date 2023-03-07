@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "SAMS",
+    "slug": "SAMS",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "SAMS"
+}
