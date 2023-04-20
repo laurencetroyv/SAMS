@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "235493787272",
+    "firebase_url": "https://msu-ec-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "msu-ec",
+    "storage_bucket": "msu-ec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:235493787272:android:d6de3c814416cee968c13d",
+        "android_client_info": {
+          "package_name": "com.sams"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "235493787272-jnv7p42aso7svi19a8dpmg50r46ove8a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sams",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "235493787272-23ug2nphisasl0kcqrshs8jivg2o960o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2ymOh1EVz6NGVaadksuMJzE__0UYv0wU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "235493787272-23ug2nphisasl0kcqrshs8jivg2o960o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
