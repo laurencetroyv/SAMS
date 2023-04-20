@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="SAMS" src="docs/SAMS.svg?sanitize=true" width="200">
+  <img alt="SAMS" src=".github/SAMS.svg?sanitize=true" width="200">
 </p>
 <p align="center"><i>Student Attendance Monitoring Systems.</i>
 <br>
