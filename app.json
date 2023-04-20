@@ -3,9 +3,15 @@
     "name": "SAMS",
     "slug": "SAMS",
     "version": "1.0.0",
-    "assetBundlePatterns": [
-      "**/*"
-    ]
+    "assetBundlePatterns": ["**/*"]
   },
-  "name": "SAMS"
+  "name": "SAMS",
+  "plugins": [
+    [
+      "expo-barcode-scanner",
+      {
+        "cameraPermission": "Allow $(PRODUCT_NAME) to access camera."
+      }
+    ]
+  ]
 }
