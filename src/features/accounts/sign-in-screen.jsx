@@ -1,6 +1,6 @@
 import React from "react";
 import { Divider, Text } from "react-native-paper";
-import { View } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import { SignInIllustration } from "../../assets/assets-index";
 import {
   Container,
@@ -8,8 +8,10 @@ import {
   StyledTextInput as PasswordInput,
   StyledButton,
 } from "../../components/components-index";
+import { useNavigation } from "@react-navigation/native";
 
 export default function SignIn() {
+  const navigation = useNavigation();
   return (
     <Container>
       <View>
@@ -32,10 +34,12 @@ export default function SignIn() {
       <StyledButton title={"Sign In"} />
 
       <View className="my-4 space-y-4">
-        <Text className="text-center">
-          Don't have an account?{" "}
-          <Text className="font-bold">Register Here</Text>
-        </Text>
+        <TouchableOpacity onPress={() => navigation.navigate("Sign-up")}>
+          <Text className="text-center">
+            Don't have an account?{" "}
+            <Text className="font-bold">Register Here</Text>
+          </Text>
+        </TouchableOpacity>
 
         <Text className="text-center">
           Forgot Password? <Text className="font-bold">Register Here</Text>
