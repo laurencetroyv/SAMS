@@ -19,7 +19,7 @@ export default function Container({
           scrollEnabled={enableScroll}
           keyboardShouldPersistTaps="handled"
           contentContainerStyle={{
-            flex: 1,
+            flexGrow: 1,
           }}
         >
           <View className={`flex-1 ${enablePadding ? "p-4" : null}`}>
