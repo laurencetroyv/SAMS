@@ -26,6 +26,7 @@ export default function SignUp() {
     <Container>
       <View className="items-center">
         <Lottie
+          className="w-full"
           source={require("../../assets/lottie-chill.json")}
           autoPlay
           loop
