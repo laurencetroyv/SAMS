@@ -1,25 +1,32 @@
 import React from "react";
-import { KeyboardAvoidingView, ScrollView, View } from "react-native";
+import { KeyboardAvoidingView, Platform, ScrollView, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Container({
   children,
-  enablePadding,
-  enableScroll,
-  enableKeyboardAvoiding,
+  enablePadding = true,
+  enableScroll = true,
+  enableKeyboardAvoiding = true,
 }) {
   return (
-    <SafeAreaView>
-      <ScrollView scrollEnabled={enableScroll} className="flex-1">
-        <KeyboardAvoidingView
-          enabled={enableKeyboardAvoiding}
+    <SafeAreaView className="flex-1 bg-background-white dark:bg-background-dark">
+      <KeyboardAvoidingView
+        enabled={enableKeyboardAvoiding}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        className="flex-1"
+      >
+        <ScrollView
+          scrollEnabled={enableScroll}
+          keyboardShouldPersistTaps="handled"
           contentContainerStyle={{
             flex: 1,
           }}
         >
-          <View className={`${enablePadding ? "px-4" : null}`}>{children}</View>
-        </KeyboardAvoidingView>
-      </ScrollView>
+          <View className={`flex-1 ${enablePadding ? "p-4" : null}`}>
+            {children}
+          </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 }
