@@ -13,6 +13,7 @@ const SvgComponent = (props) => (
     width={330}
     height={278}
     fill="none"
+    viewBox="0 0 330 278"
     {...props}
   >
     <Path
