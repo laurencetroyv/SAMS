@@ -1,10 +1,10 @@
-import React from "react";
-import { Divider, Text } from "react-native-paper";
+import React, { useState } from "react";
+import { Divider, Text, TextInput } from "react-native-paper";
 import { TouchableOpacity, View } from "react-native";
 import { SignInIllustration } from "../../assets/assets-index";
 import {
   Container,
-  StyledTextInput as EmailInput,
+  StyledTextInput as IdNumberInput,
   StyledTextInput as PasswordInput,
   StyledButton,
 } from "../../components/components-index";
@@ -12,6 +12,14 @@ import { useNavigation } from "@react-navigation/native";
 
 export default function SignIn() {
   const navigation = useNavigation();
+
+  const [IdNumber, setIdNumber] = useState("");
+  const [IdNumberError, setIdNumberError] = useState("");
+
+  const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState(false);
+  const [passwordSecure, setPasswordSecure] = useState(true);
+
   return (
     <Container>
       <View>
@@ -28,8 +36,44 @@ export default function SignIn() {
         </Text>
       </View>
 
-      <EmailInput />
-      <PasswordInput />
+      <IdNumberInput
+        label={"ID Number"}
+        autoComplete="email"
+        inputMode="email"
+        keyboardType="email-address"
+        onChangeText={setIdNumber}
+        onEndEditing={() =>
+          IdNumber.length !== 9
+            ? setIdNumberError(true)
+            : setIdNumberError(false)
+        }
+        placeholder="2020-0001"
+        textContentType={"emailAddress"}
+        right={<TextInput.Icon icon={"email"} forceTextInputFocus={false} />}
+        showHelper={IdNumberError}
+        helperMessage={"Invalid ID Number"}
+        maxLength={9}
+      />
+      <PasswordInput
+        label={"Password"}
+        autoComplete={"password"}
+        autoCapitalize={"none"}
+        inputMode={"text"}
+        onChangeText={setPassword}
+        placeholder={"P@ssw0rd"}
+        secureTextEntry={passwordSecure}
+        textContentType={"password"}
+        right={
+          <TextInput.Icon
+            icon={passwordSecure ? "eye" : "eye-outline"}
+            onPress={() => setPasswordSecure(!passwordSecure)}
+            forceTextInputFocus={false}
+          />
+        }
+        error={passwordError}
+        errorMessage={"Invalid password"}
+        passwordRules="minlength: 8; required: lower; required: upper; required: digit; required: [-];"
+      />
 
       <StyledButton title={"Sign In"} />
 
