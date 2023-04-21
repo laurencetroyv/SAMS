@@ -4,8 +4,8 @@ import { Button } from "react-native-paper";
 
 export default function StyledButton({ title }) {
   return (
-    <View>
-      <Button>{title}</Button>
+    <View className='my-4'>
+      <Button mode="contained">{title}</Button>
     </View>
   );
 }
