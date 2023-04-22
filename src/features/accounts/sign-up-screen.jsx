@@ -37,7 +37,7 @@ export default function SignUp() {
 
   const register = () => {
     if (checked && !emailError && !passwordError) {
-      navigation.navigate("Sign-in");
+      registerRequest(IdNumber, email, password);
     }
   };
 
@@ -145,16 +145,14 @@ export default function SignUp() {
           </View>
 
           <View className="my-4 space-y-4">
-            <TouchableOpacity onPress={() => register()}>
+            <TouchableOpacity onPress={() => navigation.navigate("Sign-in")}>
               <Text className="text-center">
                 Already have an account?{" "}
                 <Text className="font-bold text-primary">Click Here</Text>
               </Text>
             </TouchableOpacity>
 
-            <TouchableOpacity
-              onPress={() => registerRequest(IdNumber, email, password)}
-            >
+            <TouchableOpacity onPress={() => register()}>
               <StyledButton title={"Sign Up"} />
             </TouchableOpacity>
           </View>
