@@ -8,6 +8,7 @@ export default function AuthenticationProvider({ children }) {
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [userInfo, setUserInfo] = useState(null);
 
   const [loginRequestError, setLoginRequestError] = useState(null);
   const [registerRequestError, setRegisterRequestError] = useState();
@@ -30,6 +31,17 @@ export default function AuthenticationProvider({ children }) {
 
     auth()
       .signInWithEmailAndPassword(email, password)
+      .then((querySnapshot) => {
+        firestore()
+          .collection("users")
+          .doc(querySnapshot.user.uid)
+          .get()
+          .then((documentSnapshot) => {
+            if (documentSnapshot.exists) {
+              setUserInfo(documentSnapshot.data());
+            }
+          });
+      })
       .catch((error) => {
         if (error.code === "auth/email-already-in-use") {
           setLoading(false);
@@ -57,7 +69,7 @@ export default function AuthenticationProvider({ children }) {
         }
       });
 
-    setLoading(!loading);
+      setLoading(!loading);
   };
 
   const registerRequest = (IdNumber, email, password) => {
@@ -106,6 +118,7 @@ export default function AuthenticationProvider({ children }) {
         loading,
         loginRequest,
         loginRequestError,
+        userInfo,
         registerRequest,
         registerRequestError,
         logOutRequest,
