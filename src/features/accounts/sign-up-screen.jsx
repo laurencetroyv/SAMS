@@ -10,6 +10,7 @@ import { TouchableOpacity, View } from "react-native";
 import { Checkbox, Divider, Text, TextInput } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import { AuthenticationContext } from "../../services/authentication-index";
+import Lottie from "lottie-react-native";
 import Loading from "./loading-screen";
 
 export default function SignUp() {
