@@ -12,6 +12,7 @@ export default function AuthenticationProvider({ children }) {
 
   const [loginRequestError, setLoginRequestError] = useState(null);
   const [registerRequestError, setRegisterRequestError] = useState();
+  const [passwordResetEmailError, setPasswordResetEmailError] = useState();
 
   // Handle user state changes
   function onAuthStateChanged(user) {
@@ -69,7 +70,7 @@ export default function AuthenticationProvider({ children }) {
         }
       });
 
-      setLoading(!loading);
+    setLoading(!loading);
   };
 
   const registerRequest = (IdNumber, email, password) => {
@@ -111,6 +112,42 @@ export default function AuthenticationProvider({ children }) {
     auth().signOut();
   };
 
+  const passwordVerificationRequest = (email) => {
+    setLoading(true);
+    auth()
+      .sendPasswordResetEmail(email)
+      .catch((error) => {
+        if (error.code === "auth/invalid-email") {
+          setLoading(false);
+          setPasswordResetEmailError();
+        }
+        if (error.code === "auth/missing-android-pkg-name") {
+          setLoading(false);
+          setPasswordResetEmailError();
+        }
+        if (error.code === "auth/missing-continue-uri") {
+          setLoading(false);
+          setPasswordResetEmailError();
+        }
+        if (error.code === "auth/missing-ios-bundle-id") {
+          setLoading(false);
+          setPasswordResetEmailError();
+        }
+        if (error.code === "auth/invalid-continue-uri") {
+          setLoading(false);
+          setPasswordResetEmailError();
+        }
+        if (error.code === "auth/unauthorized-continue-uri") {
+          setLoading(false);
+          setPasswordResetEmailError();
+        }
+        if (error.code === "auth/user-not-found") {
+          setLoading(false);
+          setPasswordResetEmailError();
+        }
+      });
+  };
+
   return (
     <AuthenticationContext.Provider
       value={{
@@ -122,6 +159,8 @@ export default function AuthenticationProvider({ children }) {
         registerRequest,
         registerRequestError,
         logOutRequest,
+        passwordVerificationRequest,
+        passwordResetEmailError
       }}
     >
       {children}
