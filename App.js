@@ -6,11 +6,13 @@ import NavigationIndex from "./src/infrastructure/navigation/navigation-index";
 
 export default function App() {
   return (
-    <PaperProvider>
-      <AuthenticationProvider>
-        <NavigationIndex />
-        <StatusBar style="auto" />
-      </AuthenticationProvider>
-    </PaperProvider>
+    <>
+      <PaperProvider>
+        <AuthenticationProvider>
+          <NavigationIndex />
+        </AuthenticationProvider>
+      </PaperProvider>
+      <StatusBar style="auto" />
+    </>
   );
 }
