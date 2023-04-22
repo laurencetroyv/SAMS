@@ -15,6 +15,7 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { AuthenticationContext } from "../../services/authentication-index";
 import Lottie from "lottie-react-native";
+import Loading from "./loading-screen";
 
 export default function SignIn() {
   const navigation = useNavigation();
@@ -35,89 +36,89 @@ export default function SignIn() {
 
   return (
     <Container>
-      <View>
+      {loading ? (
+        <Loading />
+      ) : (
         <View>
-          <Lottie
-            className="w-full"
-            source={require("../../assets/lottie-chill-sign-in.json")}
-            autoPlay
-            loop
-          />
-        </View>
-
-        <Divider className="my-8" />
-
-        <View className="mb-4">
-          <Text className="text-primary text-3xl font-bold">Hello</Text>
-          <Text className="font-bold text-3xl">Login now.</Text>
-          <Text className="w-3/4">
-            Welcome back. Please fill in the form to sign in and continue
-          </Text>
-        </View>
-
-        <EmailInput
-          label={"Email Address"}
-          autoComplete="email"
-          inputMode="email"
-          keyboardType="email-address"
-          onChangeText={setEmail}
-          onEndEditing={() =>
-            !email.includes("@g.msuiit.edu.ph")
-              ? setEmailError(true)
-              : setEmailError(false)
-          }
-          placeholder="@g.msuiit.edu.ph"
-          textContentType={"emailAddress"}
-          right={<TextInput.Icon icon={"email"} forceTextInputFocus={false} />}
-          error={emailError}
-          errorMessage={"Invalid email address"}
-          maxLength={64}
-        />
-
-        <PasswordInput
-          label={"Password"}
-          autoComplete={"password"}
-          autoCapitalize={"none"}
-          inputMode={"text"}
-          onChangeText={setPassword}
-          placeholder={"P@ssw0rd"}
-          secureTextEntry={passwordSecure}
-          textContentType={"password"}
-          right={
-            <TextInput.Icon
-              icon={passwordSecure ? "eye" : "eye-outline"}
-              onPress={() => setPasswordSecure(!passwordSecure)}
-              forceTextInputFocus={false}
+          <View>
+            <Lottie
+              className="w-full"
+              source={require("../../assets/lottie-chill-sign-in.json")}
+              autoPlay
+              loop
             />
-          }
-          error={passwordError}
-          errorMessage={"Invalid password"}
-          passwordRules="minlength: 8; required: lower; required: upper; required: digit; required: [-];"
-        />
+          </View>
 
-        <View>
-          {loading ? (
-            <ActivityIndicator />
-          ) : (
-            <TouchableOpacity onPress={() => signIn()}>
-              <StyledButton title={"Sign In"} />
-            </TouchableOpacity>
-          )}
-        </View>
+          <Divider className="my-8" />
 
-        <View className="my-4 space-y-4">
-          <TouchableOpacity onPress={() => navigation.navigate("Sign-up")}>
-            <Text className="text-center">
-              Don't have an account?{" "}
-              <Text className="font-bold">Register Here</Text>
+          <View className="mb-4">
+            <Text className="text-primary text-3xl font-bold">Hello</Text>
+            <Text className="font-bold text-3xl">Login now.</Text>
+            <Text className="w-3/4">
+              Welcome back. Please fill in the form to sign in and continue
             </Text>
+          </View>
+
+          <EmailInput
+            label={"Email Address"}
+            autoComplete="email"
+            inputMode="email"
+            keyboardType="email-address"
+            onChangeText={setEmail}
+            onEndEditing={() =>
+              !email.includes("@g.msuiit.edu.ph")
+                ? setEmailError(true)
+                : setEmailError(false)
+            }
+            placeholder="@g.msuiit.edu.ph"
+            textContentType={"emailAddress"}
+            right={
+              <TextInput.Icon icon={"email"} forceTextInputFocus={false} />
+            }
+            error={emailError}
+            errorMessage={"Invalid email address"}
+            maxLength={64}
+          />
+
+          <PasswordInput
+            label={"Password"}
+            autoComplete={"password"}
+            autoCapitalize={"none"}
+            inputMode={"text"}
+            onChangeText={setPassword}
+            placeholder={"P@ssw0rd"}
+            secureTextEntry={passwordSecure}
+            textContentType={"password"}
+            right={
+              <TextInput.Icon
+                icon={passwordSecure ? "eye" : "eye-outline"}
+                onPress={() => setPasswordSecure(!passwordSecure)}
+                forceTextInputFocus={false}
+              />
+            }
+            error={passwordError}
+            errorMessage={"Invalid password"}
+            passwordRules="minlength: 8; required: lower; required: upper; required: digit; required: [-];"
+          />
+
+          <TouchableOpacity onPress={() => signIn()}>
+            <StyledButton title={"Sign In"} />
           </TouchableOpacity>
 
-          <Text className="text-center">
-            Forgot Password? <Text className="font-bold">Register Here</Text>
-          </Text>
+          <View className="my-4 space-y-4">
+            <TouchableOpacity onPress={() => navigation.navigate("Sign-up")}>
+              <Text className="text-center">
+                Don't have an account?{" "}
+                <Text className="font-bold">Register Here</Text>
+              </Text>
+            </TouchableOpacity>
+
+            <Text className="text-center">
+              Forgot Password? <Text className="font-bold">Register Here</Text>
+            </Text>
+          </View>
         </View>
-      </View>
+      )}
     </Container>
   );
 }
