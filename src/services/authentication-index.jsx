@@ -95,6 +95,10 @@ export default function AuthenticationProvider({ children }) {
       });
   };
 
+  const logOutRequest = () => {
+    auth().signOut();
+  };
+
   return (
     <AuthenticationContext.Provider
       value={{
@@ -104,6 +108,7 @@ export default function AuthenticationProvider({ children }) {
         loginRequestError,
         registerRequest,
         registerRequestError,
+        logOutRequest,
       }}
     >
       {children}
